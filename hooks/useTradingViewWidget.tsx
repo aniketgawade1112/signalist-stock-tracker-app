@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 const useTradingViewWidget = (
-  srciptUrl: string,
+  scriptUrl: string,
   config: Record<string, unknown>,
   height = 600
 ) => {
@@ -13,10 +13,10 @@ const useTradingViewWidget = (
     if (!containerRef.current) return;
     if (containerRef.current.dataset.loaded) return;
 
-    containerRef.current.innerHTML = `<div class="tradingview-widget-container__widget" style="width: 100%; height: ${height}px;></div>`;
+    containerRef.current.innerHTML = `<div class="tradingview-widget-container__widget" style="width: 100%; height: ${height}px;"></div>`;
 
     const script = document.createElement("script");
-    script.src = srciptUrl;
+    script.src = scriptUrl;
     script.async = true;
     script.innerHTML = JSON.stringify(config);
 
@@ -29,7 +29,7 @@ const useTradingViewWidget = (
         delete containerRef.current.dataset.loaded;
       }
     };
-  }, [srciptUrl, config, height]);
+  }, [scriptUrl, config, height]);
 
   return containerRef;
 };
